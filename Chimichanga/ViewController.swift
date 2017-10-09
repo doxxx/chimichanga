@@ -11,7 +11,7 @@ import CoreData
 
 class ViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
     
-    var managedObjectContext: NSManagedObjectContext? = nil
+    var managedObjectContext: NSManagedObjectContext! = nil
     
     lazy var fetchedResultsController: NSFetchedResultsController<Recipe> = {
         let fetchRequest: NSFetchRequest<Recipe> = Recipe.fetchRequest()
@@ -22,7 +22,7 @@ class ViewController: UICollectionViewController, NSFetchedResultsControllerDele
         
         // todo: predicate
         
-        let controller: NSFetchedResultsController<Recipe> = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
+        let controller: NSFetchedResultsController<Recipe> = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         controller.delegate = self
         
         do {
@@ -35,10 +35,14 @@ class ViewController: UICollectionViewController, NSFetchedResultsControllerDele
         return controller
     }()
     
+    // MARK: - View
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    // MARK: - Collection View
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.collectionView?.reloadData()
@@ -57,23 +61,71 @@ class ViewController: UICollectionViewController, NSFetchedResultsControllerDele
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeThumbnailCell", for: indexPath) as! RecipeThumbnailCell
         
-        cell.title = recipe.name!
+        cell.title = recipe.name
         cell.thumbnail = nil // todo: load thumbnail from core data
         
         return cell
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ShowRecipe"?:
+            guard let destination = segue.destination as? RecipeViewController else {
+                fatalError("unexpected segue destination")
+            }
+            guard let cell = sender as? RecipeThumbnailCell else {
+                fatalError("unexpected collection view cell")
+            }
+            guard let indexPath = collectionView?.indexPath(for: cell) else {
+                fatalError("could not find indexPath for view cell")
+            }
+            destination.managedObjectContext = managedObjectContext
+            destination.recipe = fetchedResultsController.object(at: indexPath)
+            
+        case "ShowAddRecipePopover"?:
+            break
+            
+        case "ShowRecipeEditorWithBlank"?:
+            guard let destination = segue.destination as? EditRecipeViewController else {
+                fatalError("unexpected segue destination")
+            }
+            destination.managedObjectContext = managedObjectContext
+            destination.recipe = nil
+            
+        default:
+            break
+        }
+    }
 
-    @IBAction func addClicked(_ sender: UIBarButtonItem) {
+    @IBAction func addBlankRecipe(unwindSegue: UIStoryboardSegue) {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "ShowRecipeEditorWithBlank", sender: self)
+        }
+    }
+    
+    @IBAction func addRecipeFromWeb(unwindSegue: UIStoryboardSegue) {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "ShowRecipeWebImporter", sender: self)
+        }
+    }
+
+    @IBAction func save(unwindSegue: UIStoryboardSegue) {
         guard let context = managedObjectContext else { fatalError("no managed object context!") }
-        
-        let recipe = NSEntityDescription.insertNewObject(forEntityName: "Recipe", into: context) as! Recipe
-        recipe.name = "Some Tasty Recipe"
-        
+
         do {
             try context.save()
         } catch {
-            fatalError("could not save new recipe!")
+            fatalError("could not save changes!")
         }
     }
+    
+    @IBAction func rollback(unwindSegue: UIStoryboardSegue) {
+        guard let context = managedObjectContext else { fatalError("no managed object context!") }
+        
+        context.rollback()
+    }
+    
 }
 

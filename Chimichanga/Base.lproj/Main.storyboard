@@ -6,13 +6,14 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Recipes-->
         <scene sceneID="g8T-T1-FtC">
             <objects>
-                <collectionViewController title="Recipes" id="fjX-ne-GEs" customClass="ViewController" customModule="Thyme" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Recipes" id="fjX-ne-GEs" customClass="ViewController" customModule="Chimichanga" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="fPk-ug-cj8">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +25,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecipeThumbnailCell" id="HEs-RE-2bR" customClass="RecipeThumbnailCell" customModule="Thyme" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecipeThumbnailCell" id="HEs-RE-2bR" customClass="RecipeThumbnailCell" customModule="Chimichanga" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -56,6 +57,7 @@
                                 <connections>
                                     <outlet property="thumbnailImage" destination="DNS-u0-uck" id="HrO-hw-uQV"/>
                                     <outlet property="titleLabel" destination="aHx-ar-2FK" id="7f8-Lk-ukT"/>
+                                    <segue destination="J6t-rO-d68" kind="show" identifier="ShowRecipe" id="QwV-yY-v4i"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -67,21 +69,47 @@
                     <navigationItem key="navigationItem" id="az6-eW-Gv8">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Vpe-Pb-ndS">
                             <connections>
-                                <segue destination="0s5-Qw-LKm" kind="popoverPresentation" popoverAnchorBarButtonItem="Vpe-Pb-ndS" id="n6m-wJ-jmB">
+                                <segue destination="0s5-Qw-LKm" kind="popoverPresentation" identifier="ShowAddRecipePopover" popoverAnchorBarButtonItem="Vpe-Pb-ndS" id="n6m-wJ-jmB">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="owA-Ma-jBo" kind="show" identifier="ShowRecipeEditorWithBlank" id="6J1-yd-rEM"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AdV-Vz-WAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="148.828125" y="701.5625"/>
         </scene>
-        <!--Table View Controller-->
+        <!--View Recipe-->
+        <scene sceneID="TaS-73-u8N">
+            <objects>
+                <viewController title="View Recipe" id="J6t-rO-d68" customClass="RecipeViewController" customModule="Chimichanga" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4aV-NP-B1Z">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zOj-gY-CHg"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Recipe Title" id="u4K-kq-N4A">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="GfX-aP-7R6">
+                            <connections>
+                                <segue destination="owA-Ma-jBo" kind="show" identifier="ShowRecipeEditorForRecipe" id="gXH-cf-ctz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3IH-V1-SDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="149" y="1491"/>
+        </scene>
+        <!--Add Recipe Method Selector-->
         <scene sceneID="eES-yh-Ji9">
             <objects>
-                <tableViewController modalPresentationStyle="currentContext" id="0s5-Qw-LKm" sceneMemberID="viewController">
+                <tableViewController title="Add Recipe Method Selector" modalPresentationStyle="currentContext" id="0s5-Qw-LKm" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0qh-Gd-eeR">
                         <rect key="frame" x="0.0" y="0.0" width="225" height="88"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,6 +133,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="E4F-eb-UMd" kind="unwind" unwindAction="addRecipeFromWebWithUnwindSegue:" id="MsP-yf-AEC"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="cJg-C6-ea9" style="IBUITableViewCellStyleDefault" id="y7T-Qx-VQi">
                                         <rect key="frame" x="0.0" y="44" width="225" height="44"/>
@@ -122,6 +153,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="E4F-eb-UMd" kind="unwind" unwindAction="addBlankRecipeWithUnwindSegue:" id="AND-cX-Wxw"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -134,8 +168,64 @@
                     <value key="contentSizeForViewInPopover" type="size" width="225" height="88"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWP-7o-NwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="E4F-eb-UMd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="811" y="276"/>
+            <point key="canvasLocation" x="826" y="276"/>
+        </scene>
+        <!--Edit Recipe-->
+        <scene sceneID="aIt-iL-iYd">
+            <objects>
+                <viewController title="Edit Recipe" id="owA-Ma-jBo" customClass="EditRecipeViewController" customModule="Chimichanga" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fc8-XY-zgd">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0xh-At-FfA">
+                                <rect key="frame" x="20" y="110" width="400" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="KF1-7b-w3g"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7E-4m-yGT">
+                                <rect key="frame" x="20" y="81" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0xh-At-FfA" firstAttribute="top" secondItem="L7E-4m-yGT" secondAttribute="bottom" constant="8" symbolic="YES" id="FaR-FT-aCT"/>
+                            <constraint firstItem="0xh-At-FfA" firstAttribute="leading" secondItem="wtI-HH-gFG" secondAttribute="leading" constant="20" id="K0V-MS-E2c"/>
+                            <constraint firstItem="L7E-4m-yGT" firstAttribute="top" secondItem="wtI-HH-gFG" secondAttribute="top" constant="17" id="sBf-q7-96Y"/>
+                            <constraint firstItem="wtI-HH-gFG" firstAttribute="trailing" secondItem="L7E-4m-yGT" secondAttribute="trailing" constant="902" id="sF3-5R-x79"/>
+                            <constraint firstItem="L7E-4m-yGT" firstAttribute="leading" secondItem="wtI-HH-gFG" secondAttribute="leading" constant="20" id="yd9-eq-wjs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wtI-HH-gFG"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Recipe" id="OeB-rI-GBu">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5NN-Ii-jwy">
+                            <connections>
+                                <segue destination="dk4-II-pWQ" kind="unwind" identifier="Cancel" unwindAction="rollbackWithUnwindSegue:" id="cxr-at-st0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="GmP-oK-OY6">
+                            <connections>
+                                <segue destination="dk4-II-pWQ" kind="unwind" identifier="Save" unwindAction="saveWithUnwindSegue:" id="gNZ-2y-IpH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="name" destination="0xh-At-FfA" id="Wtj-Iz-ct3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E59-tg-gJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="dk4-II-pWQ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="825.5859375" y="1058.59375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1IR-OP-8UO">
@@ -156,4 +246,7 @@
             <point key="canvasLocation" x="-595" y="702"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="gXH-cf-ctz"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F88AFFF41F8AD1C00064678D /* EditRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88AFFF31F8AD1C00064678D /* EditRecipeViewController.swift */; };
+		F88AFFF81F8AFE2D0064678D /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88AFFF71F8AFE2D0064678D /* RecipeViewController.swift */; };
 		F8E85BDA1F8A569A00D48D53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E85BD91F8A569A00D48D53 /* AppDelegate.swift */; };
 		F8E85BDC1F8A569A00D48D53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E85BDB1F8A569A00D48D53 /* ViewController.swift */; };
 		F8E85BDF1F8A569A00D48D53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E85BDD1F8A569A00D48D53 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F88AFFF31F8AD1C00064678D /* EditRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecipeViewController.swift; sourceTree = "<group>"; };
+		F88AFFF71F8AFE2D0064678D /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		F8E85BD61F8A569A00D48D53 /* Chimichanga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chimichanga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8E85BD91F8A569A00D48D53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8E85BDB1F8A569A00D48D53 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				F8E85BD91F8A569A00D48D53 /* AppDelegate.swift */,
 				F8E85BDB1F8A569A00D48D53 /* ViewController.swift */,
 				F8E85C101F8A62C400D48D53 /* RecipeThumbnailCell.swift */,
+				F88AFFF71F8AFE2D0064678D /* RecipeViewController.swift */,
+				F88AFFF31F8AD1C00064678D /* EditRecipeViewController.swift */,
 				F8E85BDD1F8A569A00D48D53 /* Main.storyboard */,
 				F8E85BE01F8A569A00D48D53 /* Chimichanga.xcdatamodeld */,
 				F8E85BE31F8A569A00D48D53 /* Assets.xcassets */,
@@ -267,8 +273,10 @@
 			files = (
 				F8E85C111F8A62C400D48D53 /* RecipeThumbnailCell.swift in Sources */,
 				F8E85BDC1F8A569A00D48D53 /* ViewController.swift in Sources */,
+				F88AFFF81F8AFE2D0064678D /* RecipeViewController.swift in Sources */,
 				F8E85BE21F8A569A00D48D53 /* Chimichanga.xcdatamodeld in Sources */,
 				F8E85BDA1F8A569A00D48D53 /* AppDelegate.swift in Sources */,
+				F88AFFF41F8AD1C00064678D /* EditRecipeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

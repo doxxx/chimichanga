@@ -12,9 +12,9 @@ class RecipeThumbnailCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var thumbnailImage: UIImageView!
     
-    var title: String = "" {
+    var title: String? = nil {
         didSet {
-            titleLabel.text = title
+            titleLabel.text = title ?? ""
         }
     }
     
