@@ -17,46 +17,46 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="fPk-ug-cj8">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.78463614408858884" green="1" blue="0.21219828156273279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oqe-Bs-YuH">
-                            <size key="itemSize" width="300" height="200"/>
+                            <size key="itemSize" width="300" height="300"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecipeThumbnailCell" id="HEs-RE-2bR" customClass="RecipeThumbnailCell" customModule="Chimichanga" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHx-ar-2FK">
-                                            <rect key="frame" x="0.0" y="179" width="300" height="21"/>
-                                            <color key="backgroundColor" red="0.15793713764442041" green="1" blue="0.62835589159331295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DNS-u0-uck">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="167"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a Really Long Recipe Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-TU-dfo">
+                                            <rect key="frame" x="5" y="5" width="290" height="61"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <size key="shadowOffset" width="1" height="1"/>
+                                        </label>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" red="0.1602551063755403" green="1" blue="0.97920866269505313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="aHx-ar-2FK" secondAttribute="trailing" id="2n5-zq-eP7"/>
-                                    <constraint firstItem="aHx-ar-2FK" firstAttribute="leading" secondItem="HEs-RE-2bR" secondAttribute="leadingMargin" id="H9a-7Y-Dt5"/>
-                                    <constraint firstItem="aHx-ar-2FK" firstAttribute="bottom" secondItem="HEs-RE-2bR" secondAttribute="bottomMargin" id="LFx-Nc-Q0N"/>
+                                    <constraint firstAttribute="bottom" secondItem="DNS-u0-uck" secondAttribute="bottom" id="2h3-jc-Bv4"/>
+                                    <constraint firstItem="dJj-TU-dfo" firstAttribute="leading" secondItem="HEs-RE-2bR" secondAttribute="leading" constant="5" id="3T4-F3-fkq"/>
                                     <constraint firstItem="DNS-u0-uck" firstAttribute="top" secondItem="HEs-RE-2bR" secondAttribute="topMargin" id="PLG-Ia-ScN"/>
+                                    <constraint firstItem="dJj-TU-dfo" firstAttribute="top" secondItem="HEs-RE-2bR" secondAttribute="top" constant="5" id="g97-hs-UMc"/>
                                     <constraint firstItem="DNS-u0-uck" firstAttribute="leading" secondItem="HEs-RE-2bR" secondAttribute="leadingMargin" id="ibJ-7S-AXc"/>
-                                    <constraint firstItem="aHx-ar-2FK" firstAttribute="top" secondItem="DNS-u0-uck" secondAttribute="bottom" constant="12" id="ulR-Gs-yjq"/>
+                                    <constraint firstAttribute="trailing" secondItem="dJj-TU-dfo" secondAttribute="trailing" constant="5" id="ra8-nx-QbJ"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="DNS-u0-uck" secondAttribute="trailing" id="ztV-Uk-5lJ"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="thumbnailImage" destination="DNS-u0-uck" id="HrO-hw-uQV"/>
-                                    <outlet property="titleLabel" destination="aHx-ar-2FK" id="7f8-Lk-ukT"/>
+                                    <outlet property="titleLabel" destination="dJj-TU-dfo" id="Oqw-0G-T68"/>
                                     <segue destination="J6t-rO-d68" kind="show" identifier="ShowRecipe" id="QwV-yY-v4i"/>
                                 </connections>
                             </collectionViewCell>
@@ -247,6 +247,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gXH-cf-ctz"/>
+        <segue reference="6J1-yd-rEM"/>
     </inferredMetricsTieBreakers>
 </document>
